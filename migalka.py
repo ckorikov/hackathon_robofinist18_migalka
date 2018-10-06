@@ -4,14 +4,27 @@ import rospy
 from geometry_msgs.msg import Vector3, Twist
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
-from sensor_msgs.msg import LaserSca
-import cv2n
+from sensor_msgs.msg import LaserScan
+import cv2
+
+import numpy as np
+from numpy import array
+import matplotlib.pyplot as plt
+import random
 
 STOP = Twist(linear=Vector3(0,0,0), angular=Vector3(0,0,0))
 bridge = CvBridge()
 
 def process_scan(msg):
-    print(msg)
+    currDist = msg.ranges
+    n = 50
+    newList = [currDist[i:i + n] for i in range(0, len(currDist), n)]
+    nArray = array(newList)
+
+    a11 = nArray.reshape(50, 100)
+    plt.imshow(a11, cmap='hot')
+    plt.colorbar()
+    plt.show()
 
 def image_callback(msg):
     #print("Received an image!")
