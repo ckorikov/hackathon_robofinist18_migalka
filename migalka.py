@@ -210,17 +210,19 @@ class MigalkaBot:
                         p4 = array([x4, y4])
                         x, y = seg_intersect(p1, p2, p3, p4)
                         if x>0:
-                            self._set_a(1.0)
+                            self._set_a(0.2)
                             self._set_v(1.0)
                         else:
                           self.to(State.DRIVE)
+                    else:
+                        self.to(State.DRIVE)
 
             cv2.imshow("frame", edges)
             cv2.waitKey(0)
 
     def _scan_handle(self, msg):
         dist = msg.ranges
-        val = max(dist)
+        val = dist[0]
         print "Distance: %f" % (val)
 
     def _tgm_handler(self, msg):
