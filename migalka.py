@@ -136,9 +136,9 @@ class MigalkaBot:
             imgb[0:int(height*0.6),0:width] = 0
             x,th = cv2.threshold(imgb,200,255, cv2.THRESH_BINARY)
             edges = cv2.Canny(th, 50, 400, apertureSize=3)
-            lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)
-            linesCorr = lines
-            # if lines is not None and len(lines) > 0:
+            lines = cv2.HoughLines(edges, 1, np.pi / 180, 100)
+            if lines is not None and len(lines) > 0:
+                linesCorr = lines
             #     linesCorr = []
             #     for line in lines:
             #         for rho, theta in line:
