@@ -133,7 +133,7 @@ class MigalkaBot:
         else:
             gray = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2GRAY)
             imgb = cv2.GaussianBlur(gray, (3, 3), 0)
-            imgb[0:int(height*0.8),0:width] = 0
+            imgb[0:int(height*0.6),0:width] = 0
             x,th = cv2.threshold(imgb,200,255, cv2.THRESH_BINARY)
             edges = cv2.Canny(th, 50, 400, apertureSize=3)
             lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)
@@ -141,7 +141,7 @@ class MigalkaBot:
                 linesCorr = []
                 for line in lines:
                     for rho, theta in line:
-                        if abs(theta - math.pi / 2) < math.pi / 12: continue
+                        # if abs(theta - math.pi / 2) < math.pi / 24: continue
                         linesCorr.append((rho, theta))
                     print len(linesCorr)
                     for t in linesCorr:
