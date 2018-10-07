@@ -122,7 +122,7 @@ class MigalkaBot:
                 self._set_v(0.1)
                 self._set_a(0.0)
                 self.state = state
-            elif:
+            elif state == State.STOP:
                 self._set_v(0.0)
                 self._set_a(0.0)
                 self.state = state
