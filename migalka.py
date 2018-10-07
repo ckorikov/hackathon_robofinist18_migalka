@@ -133,9 +133,9 @@ class MigalkaBot:
         else:
             gray = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2GRAY)
             imgb = cv2.GaussianBlur(gray, (3, 3), 0)
+            imgb[0:height/2,0:width] = 0
             x,th = cv2.threshold(imgb,200,255, cv2.THRESH_BINARY)
             edges = cv2.Canny(th, 50, 200, apertureSize=3)
-            
             lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)
             if lines is not None and len(lines) > 0:
                 linesCorr = []
@@ -158,7 +158,7 @@ class MigalkaBot:
                     x1, y1, x2, y2 = getcoord(l[0], l[1])
                     cv2.line(edges, (x1, y1), (x2, y2), (255, 0, 0), 5)
                 cv2.imshow("frame", edges)
-                cv2.waitKey()
+                cv2.waitKey(0)
 
                 if self.state == State.DRIVE:
                     if len(linesCorr) < 2:
