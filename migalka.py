@@ -197,6 +197,11 @@ class MigalkaBot:
                         p3 = array([x3, y3])
                         p4 = array([x4, y4])
                         x, y = seg_intersect(p1, p2, p3, p4)
+                        if x>0:
+                            self._set_a(1.0)
+                            self._set_v(1.0)
+                        else:
+                            self.to(State.DRIVE)
 
     def _tgm_handler(self, msg):
         chat_id = msg['chat']['id']
@@ -206,6 +211,9 @@ class MigalkaBot:
             self.telegram.sendMessage(chat_id, "ok")
         elif command == '/stop':
             self.to(State.STOP)
+            self.telegram.sendMessage(chat_id, "ok")
+        elif command == '/right':
+            self.to(State.RIGHT_LANE)
             self.telegram.sendMessage(chat_id, "ok")
 
     def _set_v(self, v):
