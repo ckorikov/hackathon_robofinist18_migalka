@@ -221,7 +221,7 @@ class MigalkaBot:
     def _scan_handle(self, msg):
         dist = msg.ranges
         val = max(dist)
-        print "Distance: %d" % (val)
+        print "Distance: %f" % (val)
 
     def _tgm_handler(self, msg):
         chat_id = msg['chat']['id']
