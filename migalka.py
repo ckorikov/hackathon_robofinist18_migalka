@@ -138,13 +138,12 @@ class MigalkaBot:
             edges = cv2.Canny(th, 50, 400, apertureSize=3)
             lines = cv2.HoughLines(edges, 1, np.pi / 180, 100)
             if lines is not None and len(lines) > 0:
-                linesCorr = lines
-            #     linesCorr = []
-            #     for line in lines:
-            #         for rho, theta in line:
+                linesCorr = []
+                for line in lines:
+                    for rho, theta in line:
             #             # if abs(theta - math.pi / 2) < math.pi / 24: continue
-            #             linesCorr.append((rho, theta))
-            #         print len(linesCorr)
+                        linesCorr.append((rho, theta))
+                    print len(linesCorr)
             #         for t in linesCorr:
             #             comb = list(it.combinations(range(0, len(linesCorr)), 2))
             #             # print comb
