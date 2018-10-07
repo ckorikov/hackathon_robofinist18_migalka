@@ -210,8 +210,8 @@ class MigalkaBot:
                         p4 = array([x4, y4])
                         x, y = seg_intersect(p1, p2, p3, p4)
                         if x>0:
-                            self._set_a(0.2)
-                            self._set_v(1.0)
+                            self._set_a(0.5)
+                            self._set_v(0.2)
                         else:
                           self.to(State.DRIVE)
                     else:
