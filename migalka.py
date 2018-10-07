@@ -112,8 +112,16 @@ class MigalkaBot:
                     val = self.mov.angular.z/abs(self.mov.angular.z)*0.2
                 self._set_a(val)
                 self.state = state
+            elif state == State.RIGHT_LANE:
+                self.state = state
             else:
                 print "Unknown state transition"
+        elif self.state == state.RIGHT_LANE:
+            if state == State.DRIVE:
+                self._set_v(0.1)
+                self._set_a(0.0)
+                self.state = state
+            else:
         elif self.state == state.SEARCH:
             if state == State.DRIVE:
                 self._set_v(0.1)
@@ -157,8 +165,6 @@ class MigalkaBot:
                 for l in linesCorr:
                     x1, y1, x2, y2 = getcoord(l[0], l[1])
                     cv2.line(edges, (x1, y1), (x2, y2), (255, 0, 0), 5)
-                cv2.imshow("frame", edges)
-                cv2.waitKey()
 
                 if self.state == State.DRIVE:
                     if len(linesCorr) < 2:
@@ -198,10 +204,13 @@ class MigalkaBot:
                         p4 = array([x4, y4])
                         x, y = seg_intersect(p1, p2, p3, p4)
                         if x>0:
-                            self._set_a(1.0)
-                            self._set_v(1.0)
+                            self._set_a(2.0)
+                            self._set_v(4.0)
                         else:
                             self.to(State.DRIVE)
+
+            cv2.imshow("frame", edges)
+            cv2.waitKey()
 
     def _tgm_handler(self, msg):
         chat_id = msg['chat']['id']
