@@ -157,7 +157,7 @@ class MigalkaBot:
                     for rho, theta in line:
                         if abs(theta - math.pi / 2) < math.pi / 12: continue
                         linesCorr.append((rho, theta))
-                    print len(linesCorr)
+                    # print len(linesCorr)
                     for t in linesCorr:
                         comb = list(it.combinations(range(0, len(linesCorr)), 2))
                         # print comb
@@ -199,21 +199,21 @@ class MigalkaBot:
                     if len(linesCorr) >= 2:
                         self.to(State.DRIVE)
                 elif self.state == State.RIGHT_LANE:
-                    # if len(linesCorr) >= 2:
-                    #     d1 = linesCorr[0]
-                    #     x1, y1, x2, y2 = getcoord(d1[0], d1[1])
-                    #     d2 = linesCorr[1]
-                    #     x3, y3, x4, y4 = getcoord(d2[0], d2[1])
-                    #     p1 = array([x1, y1])
-                    #     p2 = array([x2, y2])
-                    #     p3 = array([x3, y3])
-                    #     p4 = array([x4, y4])
-                    #     x, y = seg_intersect(p1, p2, p3, p4)
-                    #     if x>0:
-                        self._set_a(2.0)
-                        self._set_v(4.0)
-                        # else:
-                        self.to(State.DRIVE)
+                    if len(linesCorr) >= 2:
+                        d1 = linesCorr[0]
+                        x1, y1, x2, y2 = getcoord(d1[0], d1[1])
+                        d2 = linesCorr[1]
+                        x3, y3, x4, y4 = getcoord(d2[0], d2[1])
+                        p1 = array([x1, y1])
+                        p2 = array([x2, y2])
+                        p3 = array([x3, y3])
+                        p4 = array([x4, y4])
+                        x, y = seg_intersect(p1, p2, p3, p4)
+                        if x>0:
+                            self._set_a(2.0)
+                            self._set_v(4.0)
+                        else:
+                          self.to(State.DRIVE)
 
             cv2.imshow("frame", edges)
             cv2.waitKey(0)
