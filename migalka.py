@@ -158,7 +158,7 @@ class MigalkaBot:
                     x1, y1, x2, y2 = getcoord(l[0], l[1])
                     cv2.line(edges, (x1, y1), (x2, y2), (255, 0, 0), 5)
                 cv2.imshow("frame", edges)
-                cv2.waitKey(0)
+                cv2.waitKey()
 
                 if self.state == State.DRIVE:
                     if len(linesCorr) < 2:
