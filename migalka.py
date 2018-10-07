@@ -210,7 +210,7 @@ class MigalkaBot:
                         p4 = array([x4, y4])
                         x, y = seg_intersect(p1, p2, p3, p4)
                         if x>0:
-                            self._set_a(0.5)
+                            self._set_a(1.5)
                             self._set_v(0.2)
                         else:
                           self.to(State.DRIVE)
@@ -223,7 +223,9 @@ class MigalkaBot:
     def _scan_handle(self, msg):
         dist = msg.ranges
         val = dist[0]
-        print "Distance: %f" % (val)
+        if val < 10.0:
+            self.to(State.STOP)
+        # print "Distance: %f" % (val)
 
     def _tgm_handler(self, msg):
         chat_id = msg['chat']['id']
