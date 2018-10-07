@@ -135,6 +135,7 @@ class MigalkaBot:
             imgb = cv2.GaussianBlur(gray, (3, 3), 0)
             x,th = cv2.threshold(imgb,200,255, cv2.THRESH_BINARY)
             edges = cv2.Canny(th, 50, 200, apertureSize=3)
+            
             lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)
             if lines is not None and len(lines) > 0:
                 linesCorr = []
