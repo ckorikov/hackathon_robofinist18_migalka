@@ -143,7 +143,7 @@ class MigalkaBot:
                     for rho, theta in line:
                         if abs(theta - math.pi / 2) < math.pi / 12: continue
                         linesCorr.append((rho, theta))
-                    # print len(linesCorr)
+                    print len(linesCorr)
                     for t in linesCorr:
                         comb = list(it.combinations(range(0, len(linesCorr)), 2))
                         # print comb
