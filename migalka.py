@@ -143,7 +143,7 @@ class MigalkaBot:
                     for rho, theta in line:
                         if abs(theta - math.pi / 2) < math.pi / 12: continue
                         linesCorr.append((rho, theta))
-                    print len(linesCorr)
+                    # print len(linesCorr)
                     for t in linesCorr:
                         comb = list(it.combinations(range(0, len(linesCorr)), 2))
                         # print comb
@@ -201,7 +201,6 @@ class MigalkaBot:
     def _tgm_handler(self, msg):
         chat_id = msg['chat']['id']
         command = msg['text']
-
         if command == '/start':
             self.to(State.DRIVE)
             self.telegram.sendMessage(chat_id, "ok")
@@ -210,7 +209,7 @@ class MigalkaBot:
             self.telegram.sendMessage(chat_id, "ok")
 
     def _set_v(self, v):
-        # print "Set speed: %f" % (v)
+        print "Set speed: %f" % (v)
         self.mov.linear.x = v
 
     def _set_a(self, a):
