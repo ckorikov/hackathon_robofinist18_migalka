@@ -137,22 +137,23 @@ class MigalkaBot:
             x,th = cv2.threshold(imgb,200,255, cv2.THRESH_BINARY)
             edges = cv2.Canny(th, 50, 400, apertureSize=3)
             lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)
-            if lines is not None and len(lines) > 0:
-                linesCorr = []
-                for line in lines:
-                    for rho, theta in line:
-                        # if abs(theta - math.pi / 2) < math.pi / 24: continue
-                        linesCorr.append((rho, theta))
-                    print len(linesCorr)
-                    for t in linesCorr:
-                        comb = list(it.combinations(range(0, len(linesCorr)), 2))
-                        # print comb
-                        for c in comb:
-                            d1 = linesCorr[c[0]]
-                            d2 = linesCorr[c[1]]
-                            if abs(d1[1] - d2[1]) < math.pi / 8:
-                                del linesCorr[c[0]]
-                                break
+            linesCorr = lines
+            # if lines is not None and len(lines) > 0:
+            #     linesCorr = []
+            #     for line in lines:
+            #         for rho, theta in line:
+            #             # if abs(theta - math.pi / 2) < math.pi / 24: continue
+            #             linesCorr.append((rho, theta))
+            #         print len(linesCorr)
+            #         for t in linesCorr:
+            #             comb = list(it.combinations(range(0, len(linesCorr)), 2))
+            #             # print comb
+            #             for c in comb:
+            #                 d1 = linesCorr[c[0]]
+            #                 d2 = linesCorr[c[1]]
+            #                 if abs(d1[1] - d2[1]) < math.pi / 8:
+            #                     del linesCorr[c[0]]
+            #                     break
 
                 for l in linesCorr:
                     x1, y1, x2, y2 = getcoord(l[0], l[1])
