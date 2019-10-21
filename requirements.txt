@@ -48,7 +48,7 @@ ptyprocess==0.6.0
 Pygments==2.2.0
 pyparsing==2.2.2
 python-dateutil==2.7.3
-PyYAML==3.13
+PyYAML==5.1
 pyzmq==17.1.2
 qtconsole==4.4.1
 requests==2.20.1
